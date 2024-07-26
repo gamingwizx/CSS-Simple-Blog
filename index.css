@@ -1,6 +1,7 @@
 :root {
   --spacing: 1em;
   --ff-ibm: "IBM Plex Sans", sans-serif;
+  --ff-serif: "IBM Plex Sans", serif;
 
   --clr-neutral-100: #000000;
   --clr-neutral-200: #020203;
@@ -112,6 +113,9 @@ h3 {
   font-size: var(--fs-title-3);
   font-weight: var(--light);
 }
+a {
+  color: var(--clr-neutral-200);
+}
 .paragraph {
   font-size: var(--fs-paragraph-2);
   font-weight: var(--light);
@@ -135,6 +139,8 @@ h3 {
 }
 .min-content {
   color: var(--clr-neutral-700);
+  display: flex;
+  gap: 2em;
 }
 .form-title {
   font-size: var(--fs-mini-2);
@@ -148,7 +154,9 @@ h3 {
 }
 .form-input::-webkit-input-placeholder {
   color: var(--clr-neutral-700);
-  font-weight: 100;
+  font-family: var(--ff-serif);
+  opacity: 1;
+  font-weight: var(--light);
 }
 .item-title {
   font-size: var(--fs-paragraph-3);
@@ -248,6 +256,25 @@ h3 {
 .item--home {
   font-weight: var(--bold);
 }
+.story {
+  z-index: 1;
+  position: relative;
+}
+
+.story a::before {
+  content: "";
+  position: absolute;
+  z-index: 100;
+  top: -1em;
+  bottom: -1em;
+  left: -1em;
+  right: -1em;
+  border-radius: var(--border-radius);
+  transition: box-shadow 350ms ease;
+}
+.story:hover a::before {
+  box-shadow: 0 0.75em 1.25em rgb(0, 0, 0, 0.25);
+}
 /* Section 1 */
 
 /* Section 1 - Blog */
@@ -277,7 +304,7 @@ h3 {
 .split {
   display: flex;
   flex-direction: row;
-  gap: 2em;
+  gap: 3em;
 }
 .split .col > * + * {
   margin-top: 0.5em;
@@ -335,6 +362,9 @@ h3 {
 .row--section2 {
   margin-top: calc(var(--spacing) * 5);
 }
+.row--section2 > * {
+  margin-left: 1em;
+}
 .section2 .col {
   align-items: flex-start;
   flex-wrap: wrap;
@@ -345,6 +375,32 @@ h3 {
 
 .section2 .flow-top {
   --spacing: 0.5em;
+}
+.section2 .blog {
+  position: relative;
+  z-index: 1;
+}
+.section2 a {
+  display: block;
+}
+.blog a:hover,
+.blog a:focus {
+  color: inherit;
+}
+.blog a::before {
+  --offset: -1em;
+  content: "";
+  position: absolute;
+  top: var(--offset);
+  left: var(--offset);
+  right: var(--offset);
+  z-index: 199;
+  bottom: var(--offset);
+  border-radius: var(--border-radius);
+  transition: box-shadow 350ms ease;
+}
+.blog:hover a::before {
+  box-shadow: 0 0.75rem 1.25rem rgb(0, 0, 0, 0.25);
 }
 /* Section 2 - Blog */
 .blog__section2 h2 {
